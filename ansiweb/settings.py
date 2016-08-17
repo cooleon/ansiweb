@@ -51,7 +51,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'ansiweb.urls'
 
 WSGI_APPLICATION = 'ansiweb.wsgi.application'
-TEMPLATE_DIRS = ( '/opt/foura_app/ansiweb/templates',)
+TEMPLATE_DIRS = ( '/opt/ansiweb/templates',)
 
 
 # Database
