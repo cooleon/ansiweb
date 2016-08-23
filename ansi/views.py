@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import render_to_response
 from client_paramiko import ParamikoClient
-from django.template import RequestContext
+# from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from models import hosts, Document, conf, Doc_select, logs
@@ -29,7 +29,7 @@ def delfile(request):
     return render_to_response(
         'upload.html',
         {'documents': documents, 'form': form},
-        context_instance=RequestContext(request)
+       #  context_instance=RequestContext(request)
     )
 
 def pushfile(request):
@@ -61,7 +61,8 @@ def pushfile(request):
         return HttpResponseRedirect(reverse('ansi.views.pushfile'))
     else:
         form = Doc_select()
-    return render(request, "pushfile.html", {"host": host, "form":form, "pscp_logs":pscp_logs}, context_instance=RequestContext(request))
+    #return render(request, "pushfile.html", {"host": host, "form":form, "pscp_logs":pscp_logs}, context_instance=RequestContext(request))
+    return render(request, "pushfile.html", {"host": host, "form":form, "pscp_logs":pscp_logs})
 
 def pssh(request):
     log_str = time.asctime().split()[3]
@@ -88,7 +89,8 @@ def pssh(request):
             return HttpResponseRedirect(reverse('ansi.views.pssh'))
     else:
         form = Ssh_exec()
-    return render(request, "pssh.html", {"host": host, "form":form, "pssh_logs":pssh_logs}, context_instance=RequestContext(request))
+    #return render(request, "pssh.html", {"host": host, "form":form, "pssh_logs":pssh_logs}, context_instance=RequestContext(request))
+    return render(request, "pssh.html", {"host": host, "form":form, "pssh_logs":pssh_logs})
 
 def upload(request):
     # Handle file upload
@@ -110,6 +112,6 @@ def upload(request):
     return render_to_response(
         'upload.html',
         {'documents': documents, 'form': form},
-        context_instance=RequestContext(request)
+        #context_instance=RequestContext(request)
     )
 
