@@ -33,11 +33,15 @@
 
 
 <form action="/pushfile/" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
+    <!-- {% csrf_token %} -->
     {% for field in form %}
+    {% if field.name = "docfile" %}
+    <p>--------------------------</p>
+    {% else %}
     <div class="filedWrapper">
         {{ field.label_tag }} {{ field }}
         {{ fiedl.errors }}
+    {% endif %}
     </div>
     {% endfor %}
     <div class="fieldWrapper"><p><input type="submit" value="批量分发"/></p></div>
