@@ -42,7 +42,7 @@ INSTALLED_APPS = (
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -59,12 +59,12 @@ TEMPLATE_DIRS = ( '/opt/ansiweb/templates',)
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ansi',
-        'USER': 'ansi',
-        'PORT': '3306',
-        'PASSWORD': 'ansi',
-        'HOST': '127.0.0.1',
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': 'UBAS',
+        'USER': 'test_netmanage',
+        'PORT': '',
+        'PASSWORD': 'test_netmanage168',
+        'HOST': '192.168.5.190',
     }
 }
 
