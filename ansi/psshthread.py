@@ -2,6 +2,7 @@
 import paramiko,os,threading
 import time
 import Queue
+import chardet
 from models import logs
 
 
@@ -31,11 +32,15 @@ class sshthread(threading.Thread):
             try:
                 stdin,stdout,stderr = ssh.exec_command(self.cmd)
                 self.flags["sta"] = "ok"
-                log_completion(self.host, self.port, self.flags, stdout.read())
+                out_str = stdout.read()
+                exc_type = chardet.detect(out_str)
+                log_completion(self.host, self.port, self.flags, out_str.decode(exc_type["encoding"]).encode("utf8"))
             except Exception,e:
                 self.flags["sta"] = "fail"
-                log_completion(self.host, self.port, self.flags, stdout.read())
-                print e
+                out_str = stdout.read()
+                exc_type = chardet.detect(out_str)
+                log_completion(self.host, self.port, self.flags, out_str.decode(exc_type["encoding"]).encode("utf8"))
+                print "pssh try 2", e
             ssh.close()
         except Exception,e:
             log_completion(self.host, self.port, self.flags, e)
